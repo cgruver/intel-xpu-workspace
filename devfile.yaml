@@ -46,7 +46,7 @@ components:
         procMount: Unmasked
   container:
     image: nexus.clg.lab:5002/dev-spaces/intel-xpu-dev:latest
-    memoryLimit: 32Gi
+    memoryLimit: 48Gi
     memoryRequest: 1Gi
     cpuLimit: '16'
     cpuRequest: 1000m

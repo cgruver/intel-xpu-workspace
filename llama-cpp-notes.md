@@ -15,12 +15,12 @@ cmake --install /projects/llama-cpp-build --prefix ${HOME}/.local
 ```
 ramalama pull granite3.2:2b
 ramalama pull granite3.2:8b
+ramalama pull granite-embedding:30m
 
 llama-server --model ${RAMALAMA_STORE}/models/ollama/granite3.2:2b --host 0.0.0.0 --n-gpu-layers 999 --flash-attn --ctx-size 131072
 llama-server --model ${RAMALAMA_STORE}/models/ollama/granite3.2:8b --host 0.0.0.0 --n-gpu-layers 999 --flash-attn --ctx-size 131072
+llama-server --model ${RAMALAMA_STORE}/models/ollama/granite-embedding:30m --host 0.0.0.0 --n-gpu-layers 999 --flash-attn --ctx-size 512
 ```
-
-
 
 ## Notes for Container Build -
 
