@@ -10,7 +10,7 @@
 		},
 		{
 			"name": "llama-cpp",
-			"path": "/projects/llama.cpp"
+			"path": "/projects/llama-cpp"
 		},
 		{
 			"name": "vllm",
