@@ -1,8 +1,8 @@
 {
 	"folders": [
 		{
-			"name": "llama-cpp-intel-gpu-workspace",
-			"path": "/projects/llama-cpp-intel-gpu-workspace"
+			"name": "intel-xpu-workspace",
+			"path": "/projects/intel-xpu-workspace"
 		},
 		{
 			"name": "ramalama",
@@ -13,7 +13,8 @@
 			"path": "/projects/llama.cpp"
 		},
 		{
-			"path": "../intel-xpu-workspace"
+			"name": "vllm",
+			"path": "/projects/vllm"
 		}
 	],
 	"extensions": {
