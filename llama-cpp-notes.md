@@ -1,5 +1,29 @@
 # Llama.cpp
 
+## Build in workspace -
+
+Open Terminal in /projects/llama-cpp
+
+```bash
+mkdir /projects/llama-cpp-build
+cd /projects/llama-cpp-build
+cmake /projects/llama-cpp -DGGML_SYCL=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DLLAMA_CURL=ON -DGGML_CCACHE=OFF -DGGML_NATIVE=OFF
+cmake --build /projects/llama-cpp-build --config Release -j -v
+cmake --install /projects/llama-cpp-build --prefix ${HOME}/.local
+```
+
+```
+ramalama pull granite3.2:2b
+ramalama pull granite3.2:8b
+
+llama-server --model ${RAMALAMA_STORE}/models/ollama/granite3.2:2b --host 0.0.0.0 --n-gpu-layers 999 --flash-attn --ctx-size 131072
+llama-server --model ${RAMALAMA_STORE}/models/ollama/granite3.2:8b --host 0.0.0.0 --n-gpu-layers 999 --flash-attn --ctx-size 131072
+```
+
+
+
+## Notes for Container Build -
+
 ```bash
 cat << EOF > /etc/yum.repos.d/oneAPI.repo
 [oneAPI]

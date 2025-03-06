@@ -1,2 +1,9 @@
-export PYTHONPATH=${HOME}/ramalama/lib/python3.12/site-packages
-export PATH=${PATH}:${HOME}/ramalama/bin
+export PYTHONPATH=${HOME}/ramalama/lib/python3.12/site-packages:${HOME}/.local/lib/python3.12/site-packages
+export PATH=${PATH}:${HOME}/.local/bin:${HOME}/ramalama/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/.local/lib64:${HOME}/.local/lib/
+export RAMLAMA_STORE=/projects/model-dir
+alias python=/usr/bin/python3.12
+if [ "${SETVARS_COMPLETED:-}" != "1" ]
+then
+  source /opt/intel/oneapi/setvars.sh
+fi
