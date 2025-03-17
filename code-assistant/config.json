@@ -12,24 +12,14 @@
       }
     ],
     "tabAutocompleteModel": {
-      "title": "Granite 3.2 Autocomplete",
+      "title": "Granite Code Autocomplete",
       "provider": "llama.cpp",
-      "model": "granite3.2:2b",
-      "contextLength": 131072,
+      "model": "granite-code:3b",
+      "contextLength": 65536,
       "requestOptions": {
         "caBundlePath": "/public-certs/tls-ca-bundle.pem"
       },
       "apiBase": "https://llama-cpp-code-assistant-autocomplete-code-assistant.apps.region-01.clg.lab/"
-    },
-    "embeddingsProvider": {
-      "title": "Granite Embeddings",
-      "provider": "llama.cpp",
-      "model": "granite-embedding:30m",
-      "maxChunkSize": 512,
-      "requestOptions": {
-        "caBundlePath": "/public-certs/tls-ca-bundle.pem"
-      },
-      "apiBase": "https://llama-cpp-code-assistant-embedding-code-assistant.apps.region-01.clg.lab/"
     },
     "contextProviders": [
       {

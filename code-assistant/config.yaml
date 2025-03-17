@@ -1,0 +1,32 @@
+name: code-assistant-config
+version: 0.0.1
+models:
+  - name: "Granite 3.2 Chat"
+    model: "granite3.2:8b"
+    contextLength: 131072
+    provider: "llama.cpp"
+    apiBase: "https://llama-cpp-code-assistant-chat-code-assistant.apps.region-01.clg.lab/"
+    requestOptions:
+      caBundlePath: "/public-certs/tls-ca-bundle.pem"
+    roles:
+      - chat
+      - edit
+  - name: "Granite Code Autocomplete"
+    model: "granite-code:3b"
+    contextLength: 65536
+    provider: "llama.cpp"
+    apiBase: "https://llama-cpp-code-assistant-autocomplete-code-assistant.apps.region-01.clg.lab/"
+    requestOptions:
+      caBundlePath: "/public-certs/tls-ca-bundle.pem"
+    roles:
+      - autocomplete
+  - name: "Granite Embeddings"
+    model: "granite-embedding:30m"
+    provider: "llama.cpp"
+    apiBase: "https://llama-cpp-code-assistant-embedding-code-assistant.apps.region-01.clg.lab/"
+    requestOptions:
+      caBundlePath: "/public-certs/tls-ca-bundle.pem"
+    embedOptions:
+      - maxChunkSize: 512
+    roles:
+      - embed
