@@ -1,21 +1,40 @@
 {
     "models": [
       {
-        "title": "Granite 3.2 Chat",
-        "model": "granite3.2:8b",
+        "title": "Granite 3.1 Chat",
+        "model": "granite3.1-dense:2b",
         "contextLength": 131072,
         "provider": "llama.cpp",
         "apiBase": "https://llama-cpp-code-assistant-chat-code-assistant.apps.region-01.clg.lab/",
         "requestOptions": {
           "caBundlePath": "/public-certs/tls-ca-bundle.pem"
+        },
+        "completionOptions": {
+          "maxTokens": 2048
         }
+      },
+      {
+        "title": "Code Autocomplete",
+        "provider": "llama.cpp",
+        "model": "qwen2.5-coder:1.5b",
+        "contextLength": 32768,
+        "completionOptions": {
+          "maxTokens": 2048
+        },
+        "requestOptions": {
+          "caBundlePath": "/public-certs/tls-ca-bundle.pem"
+        },
+        "apiBase": "https://llama-cpp-code-assistant-autocomplete-code-assistant.apps.region-01.clg.lab/"
       }
     ],
     "tabAutocompleteModel": {
-      "title": "Granite Code Autocomplete",
+      "title": "Code Autocomplete",
       "provider": "llama.cpp",
-      "model": "granite-code:3b",
-      "contextLength": 65536,
+      "model": "qwen2.5-coder:1.5b",
+      "contextLength": 32768,
+      "completionOptions": {
+          "maxTokens": 2048
+        },
       "requestOptions": {
         "caBundlePath": "/public-certs/tls-ca-bundle.pem"
       },
