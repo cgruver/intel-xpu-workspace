@@ -2,8 +2,10 @@ FROM quay.io/fedora/fedora:41
 
 ARG USER_HOME_DIR="/home/user"
 ARG WORK_DIR="/projects"
+ARG NODE_VERSION="v20.19.0"
 ENV HOME=${USER_HOME_DIR}
 ENV BUILDAH_ISOLATION=chroot
+ENV PATH=${PATH}:/usr/local/node/bin
 
 COPY --chown=0:0 entrypoint.sh /
 COPY oneAPI.repo /etc/yum.repos.d/
@@ -14,6 +16,13 @@ RUN dnf install -y g++ cmake git libcurl-devel intel-oneapi-mkl-sycl-devel intel
   mkdir -p /usr/local/bin ; \
   mkdir -p ${WORK_DIR} ; \
   python3.12 -m ensurepip ; \
+  # Install NodeJS
+  TEMP_DIR="$(mktemp -d)" ; \
+  curl -fsSL -o ${TEMP_DIR}/node.tz https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.xz ; \
+  tar -x --no-auto-compress -f ${TEMP_DIR}/node.tz -C ${TEMP_DIR} ; \
+  mv ${TEMP_DIR}/node-${NODE_VERSION}-linux-x64 /usr/local/node ; \
+  rm -rf "${TEMP_DIR}" ; \
+  npm install -g fnm; \
   chgrp -R 0 /home ; \
   chmod -R g=u /home ${WORK_DIR} ; \
   chmod +x /entrypoint.sh ; \

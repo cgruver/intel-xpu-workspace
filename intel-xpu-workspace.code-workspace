@@ -15,6 +15,10 @@
 		{
 			"name": "vllm",
 			"path": "/projects/vllm"
+		},
+		{
+			"name": "continue.dev",
+			"path": "/projects/continue"
 		}
 	],
 	"extensions": {

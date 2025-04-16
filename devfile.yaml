@@ -32,6 +32,13 @@ projects:
       checkoutFrom:
         remote: origin
         revision: main
+  - name: continue
+    git:
+      remotes:
+        origin: https://github.com/cgruver/continue.git
+      checkoutFrom:
+        remote: origin
+        revision: main
 components:
 - name: dev-tools
   attributes:
