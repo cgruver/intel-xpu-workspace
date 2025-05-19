@@ -68,7 +68,9 @@ podman build -t nexus.clg.lab:5002/dev-spaces/intel-xpu-dev:latest ./workspace-i
 
 python -m pip install --upgrade pip
 
-python -m pip install torch==2.5.1+cxx11.abi torchvision==0.20.1+cxx11.abi torchaudio==2.5.1+cxx11.abi intel-extension-for-pytorch==2.7.10+xpu oneccl_bind_pt==2.7.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+
+
+python -m pip install torch==2.7.0+cxx11.abi torchvision==0.20.1+cxx11.abi torchaudio==2.5.1+cxx11.abi intel-extension-for-pytorch==2.7.10+xpu oneccl_bind_pt==2.7.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 
 cat << EOF > requirements-xpu.txt
 -r requirements-common.txt
@@ -83,4 +85,28 @@ wheel
 jinja2
 EOF
 
+python -m pip install torch==2.7.0+xpu --extra-index-url https://download.pytorch.org/whl/torch/
+
+python -m pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/xpu
+python -m pip install intel-extension-for-pytorch==2.7.10+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+python -m pip install oneccl_bind_pt==2.7.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+
+VLLM_TARGET_DEVICE=xpu python -m pip install .
+```
+
+## Take 3
+
+```bash
+podman build -t nexus.clg.lab:5002/dev-spaces/intel-xpu-dev:latest ./workspace-image
+
+python -m pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/xpu
+python -m pip install intel-extension-for-pytorch==2.7.10+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+python -m pip install oneccl_bind_pt==2.7.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
+python -m pip uninstall triton pytorch-triton-xpu    
+python -m pip install pytorch-triton-xpu==3.3.0 --index-url  https://download.pytorch.org/whl/xpu
+
+
+VLLM_TARGET_DEVICE=xpu python -m pip install .
+
+VLLM_LOGGING_LEVEL=DEBUG vllm serve --host 0.0.0.0 --port 8080 --device xpu --gpu-memory-utilization 0.3 Qwen/Qwen2.5-1.5B-Instruct
 ```

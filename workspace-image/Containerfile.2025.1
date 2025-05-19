@@ -10,7 +10,7 @@ ENV PATH=${PATH}:/usr/local/node/bin
 COPY --chown=0:0 entrypoint.sh /
 COPY oneAPI.repo /etc/yum.repos.d/
 
-RUN dnf install -y awk g++ cmake git libcurl-devel intel-oneapi-base-toolkit-2025.0.x86_64 intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3.12 python3.12-devel lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced awk libpng-devel libjpeg-devel libfabric-devel intel-deep-learning-essentials ; \
+RUN dnf install -y awk g++ cmake git libcurl-devel intel-oneapi-base-toolkit intel-oneapi-mkl-sycl-devel intel-oneapi-dnnl-devel intel-oneapi-compiler-dpcpp-cpp intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3.12 python3.12-devel lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced awk libpng-devel libjpeg-devel libfabric-devel intel-deep-learning-essentials ; \
   dnf update -y ; \
   dnf clean all ; \
   mkdir -p /usr/local/bin ; \
