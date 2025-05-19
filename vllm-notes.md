@@ -99,6 +99,8 @@ VLLM_TARGET_DEVICE=xpu python -m pip install .
 ```bash
 podman build -t nexus.clg.lab:5002/dev-spaces/intel-xpu-dev:latest ./workspace-image
 
+python -m pip install --upgrade pip
+
 python -m pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/xpu
 python -m pip install intel-extension-for-pytorch==2.7.10+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 python -m pip install oneccl_bind_pt==2.7.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
@@ -108,7 +110,7 @@ python -m pip install triton pytorch-triton-xpu==3.3.0 --index-url  https://down
 
 VLLM_TARGET_DEVICE=xpu python -m pip install .
 
-VLLM_LOGGING_LEVEL=DEBUG vllm serve --host 0.0.0.0 --port 8080 --device xpu --gpu-memory-utilization 0.3 Qwen/Qwen2.5-1.5B-Instruct
+VLLM_LOGGING_LEVEL=DEBUG vllm serve --host 0.0.0.0 --port 8080 --device xpu --dtype float16 --gpu-memory-utilization 0.3 Qwen/Qwen2.5-1.5B-Instruct
 
 curl localhost:8080 -X POST -H "Content-Type: application/json" -d '{"model":"Qwen/Qwen2.5-1.5B-Instruct","prompt": "San Francisco is a","max_tokens": 7,"temperature": 0}'
 ```

@@ -48,9 +48,16 @@ components:
           io.kubernetes.cri-o.Devices: "/dev/fuse,/dev/net/tun,/dev/dri/renderD128"
       spec:
         hostUsers: false
+        volumes:
+        - name: shm
+          emptyDir:
+            medium: Memory
     container-overrides: 
       securityContext:
         procMount: Unmasked
+      volumeMounts:
+      - mountPath: /dev/shm
+        name: shm
   container:
     image: nexus.clg.lab:5002/dev-spaces/intel-xpu-dev:latest
     memoryLimit: 48Gi
